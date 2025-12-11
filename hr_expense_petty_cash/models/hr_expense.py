@@ -121,6 +121,6 @@ class HrExpense(models.Model):
             "currency_id": self.currency_id.id,
             "expense_id": self.id,
             "partner_id": partner_id,
-            "tax_ids": [Command.set(tax_ids.ids)],
+            "tax_ids": [Command.set(tax_ids.ids) if tax_ids else Command.clear()],
         }
         return ml_dict
