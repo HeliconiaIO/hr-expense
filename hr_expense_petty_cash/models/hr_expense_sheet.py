@@ -80,7 +80,6 @@ class HrExpenseSheet(models.Model):
             moves = self.env["account.move"].create(
                 [sheet._prepare_bills_vals() for sheet in petty_cash_account_sheets]
             )
-            moves.action_post()
             self.activity_update()
             return moves
         return super(HrExpenseSheet, self_without_petty_cash)._do_create_moves()
@@ -135,7 +134,7 @@ class HrExpenseSheet(models.Model):
                 expense.petty_cash_id.partner_id.id,
                 -expense.total_amount,
                 -expense.total_amount_currency,
-                expense.tax_ids,
+                None,
                 expense.petty_cash_id.account_id,
             )
             move_line_values.append(move_line_dst)
