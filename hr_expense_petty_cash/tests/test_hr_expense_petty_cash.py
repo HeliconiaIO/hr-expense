@@ -270,7 +270,7 @@ class TestHrExpensePettyCash(BaseCommon):
         if sheet.state == "approve":
             # If still in approve state, we need to post manually
             sheet.action_sheet_move_post()
-            self.assertEqual(sheet.state, "post")
+            self.assertEqual(sheet.state, "done")
         else:
             # If already posted, just verify
             self.assertEqual(sheet.state, "post")
